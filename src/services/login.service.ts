@@ -31,6 +31,8 @@ export class LoginService {
   public setLogin(status, token){
     this.loged = status;
     this.token = token;
+    
+    sessionStorage.setItem('token', token);
   }
 
   public isLoged(){
@@ -40,5 +42,15 @@ export class LoginService {
   public getToken(){
     return this.token;
   }  
+
+  /**
+   * Load and check token from session storage
+   */
+  public loadToken(){
+    if(sessionStorage.getItem('token')){
+      this.token = sessionStorage.getItem('token');
+      this.loged = true;
+    }
+  }
 
 }
